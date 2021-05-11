@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use PhpParser\Node\Expr\FuncCall;
 
 class User extends Authenticatable
 {
@@ -31,6 +32,14 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function projects() 
+
+    {
+
+        return $this->hasMany(Project::class, 'owner_id');
+
+    }
 
     /**
      * The attributes that should be cast to native types.
